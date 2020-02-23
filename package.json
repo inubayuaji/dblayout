@@ -15,7 +15,6 @@
     "mezr": "^0.6.2",
     "panzoom": "^9.2.0",
     "vue": "^2.6.11",
-    "vue-draggable-resizable": "^2.1.0",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
