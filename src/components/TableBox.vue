@@ -36,7 +36,13 @@ export default {
     initInteract: function (el) {
       interact(el).draggable({
         onmove: this.dragMoveListener,
-        allowFrom: '.card-header'
+        allowFrom: '.card-header',
+        modifiers: [
+          interact.modifiers.restrictRect({
+            restriction: 'parent',
+            endOnly: true
+          })
+        ]
       })
     },
     dragMoveListener: function (event) {
