@@ -19,6 +19,7 @@ export default {
 
 <style scoped>
 #tools {
+  z-index: 1000000;
   position: fixed;
   width: 50px;
   height: 350px;
