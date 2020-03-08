@@ -1,6 +1,8 @@
 <template>
   <div id="tools">
     <button v-on:click="addTable()">+</button>
+    <button v-on:click="zoomIn()">^</button>
+    <button v-on:click="zoomOut()">v</button>
   </div>
 </template>
 
@@ -12,6 +14,18 @@ export default {
   methods: {
     addTable: function () {
       store.commit('addTable')
+    },
+    zoomIn: function () {
+      store.state.lib.panzoom.zoomIn()
+      var zoomScale = store.state.lib.panzoom.getScale()
+
+      store.state.lib.jsPlumb.setZoom(zoomScale)
+    },
+    zoomOut: function () {
+      store.state.lib.panzoom.zoomOut()
+      var zoomScale = store.state.lib.panzoom.getScale()
+
+      store.state.lib.jsPlumb.setZoom(zoomScale)
     }
   }
 }
@@ -21,10 +35,8 @@ export default {
 #tools {
   z-index: 1000000;
   position: fixed;
-  width: 50px;
-  height: 350px;
-  margin: 10px 0 0 10px;
+  top: 10px;
+  left: 10px;
   background: #ccc;
-  border-radius: 10px;
 }
 </style>

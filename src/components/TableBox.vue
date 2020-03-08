@@ -47,10 +47,11 @@ export default {
     },
     dragMoveListener: function (event) {
       var target = event.target
+      var zoomScale = store.state.lib.panzoom.getScale()
 
       // keep the dragged position in the data-x/data-y attributes
-      var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-      var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+      var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx / zoomScale
+      var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy / zoomScale
 
       // translate the element
       target.style.left = x + 'px'

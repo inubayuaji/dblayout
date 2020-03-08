@@ -30,8 +30,7 @@ export default {
   mounted: function () {
     var el = this.$refs.page
 
-    var panzoom = new Panzoom(el)
-    store.state.lib.panzoom = panzoom
+    store.state.lib.panzoom = new Panzoom(el)
 
     var jsPlumb = jsplumb.jsPlumb.getInstance()
     jsPlumb.setContainer(el)
