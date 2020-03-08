@@ -16,6 +16,16 @@ export default {
       store.commit('delRow', payload)
     }
   },
+  mounted: function () {
+    store.state.lib.jsPlumb.addEndpoint(this.id, {
+      isSource: true,
+      isTarget: true,
+      anchor: ['Continuous', { faces: ['left', 'right'] }],
+      cssClass: 'panzoom-exclude'
+    })
+
+    store.state.lib.jsPlumb.revalidate(this.id)
+  },
   props: {
     id: String,
     table: String,

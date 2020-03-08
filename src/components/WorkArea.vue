@@ -15,6 +15,7 @@
 import TableBox from './TableBox'
 import store from '../store/index'
 import Panzoom from '@panzoom/panzoom'
+import jsplumb from 'jsplumb'
 
 export default {
   name: 'work-area',
@@ -28,9 +29,13 @@ export default {
   },
   mounted: function () {
     var el = this.$refs.page
-    Panzoom(el, {
-      excludeClass: 'card'
-    })
+
+    var panzoom = new Panzoom(el)
+    store.state.lib.panzoom = panzoom
+
+    var jsPlumb = jsplumb.jsPlumb.getInstance()
+    jsPlumb.setContainer(el)
+    store.state.lib.jsPlumb = jsPlumb
   },
   components: {
     TableBox

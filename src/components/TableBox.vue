@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-bind:id="id" ref="tableBox">
+  <div class="card panzoom-exclude" v-bind:id="id" ref="tableBox">
     <div class="card-header">
       New entity {{ id }}
       <button v-on:click="addRow(id)">+</button>
@@ -59,6 +59,11 @@ export default {
       // update the posiion attributes
       target.setAttribute('data-x', x)
       target.setAttribute('data-y', y)
+
+      // merubah posisi jsPlumb untuk setiap row
+      this.rows.forEach(el => {
+        store.state.lib.jsPlumb.revalidate(el.id)
+      })
     },
     delTable: function (id) {
       store.commit('delTable', id)
