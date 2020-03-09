@@ -1,5 +1,5 @@
 <template>
-  <li v-bind:id="id">{{id}} - {{ data.name }} <a href="#" v-on:click="delRow()">Hapus</a></li>
+  <div class="Box-row" v-bind:id="id">{{id}} - {{ data.name }} <a href="#" v-on:click="delRow()">Hapus</a></div>
 </template>
 
 <script>

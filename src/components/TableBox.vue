@@ -1,21 +1,17 @@
 <template>
-  <div class="card panzoom-exclude" v-bind:id="id" ref="tableBox">
-    <div class="card-header">
+  <div class="Box Box--condensed panzoom-exclude" v-bind:id="id" ref="tableBox">
+    <div class="Box-header">
       New entity {{ id }}
       <button v-on:click="addRow(id)">+</button>
       <button v-on:click="delTable(id)">X</button>
     </div>
-    <div class="card-body">
-      <ul>
-        <Row
-          v-for="row in rows"
-          v-bind:key="row.id"
-          v-bind:id="row.id"
-          v-bind:table="id"
-          v-bind:data="row"
-        ></Row>
-      </ul>
-    </div>
+    <Row
+      v-for="row in rows"
+      v-bind:key="row.id"
+      v-bind:id="row.id"
+      v-bind:table="id"
+      v-bind:data="row"
+    ></Row>
   </div>
 </template>
 
@@ -36,7 +32,7 @@ export default {
     initInteract: function (el) {
       interact(el).draggable({
         onmove: this.dragMoveListener,
-        allowFrom: '.card-header',
+        allowFrom: '.Box-header',
         modifiers: [
           interact.modifiers.restrictRect({
             restriction: 'parent',
@@ -87,7 +83,7 @@ export default {
 </script>
 
 <style scoped>
-.card{
+.Box{
   width: 300px;
   position: absolute;
   touch-action: none;
