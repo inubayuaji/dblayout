@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@panzoom/panzoom": "^4.0.3",
-    "bootstrap": "^4.4.1",
+    "@primer/css": "^14.2.0",
     "core-js": "^3.6.4",
     "interactjs": "^1.8.4",
     "jsplumb": "^2.12.14",
