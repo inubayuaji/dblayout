@@ -88,5 +88,6 @@ export default {
   position: absolute;
   touch-action: none;
   user-select: none;
+  cursor: auto;
 }
 </style>
