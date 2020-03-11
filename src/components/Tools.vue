@@ -1,8 +1,8 @@
 <template>
   <div id="tools">
-    <button v-on:click="addTable()">+</button>
-    <button v-on:click="zoomIn()">^</button>
-    <button v-on:click="zoomOut()">v</button>
+    <button v-on:click="addTable()"><i class="ri-layout-3-line"></i></button>
+    <button v-on:click="zoomIn()"><i class="ri-zoom-in-line"></i></button>
+    <button v-on:click="zoomOut()"><i class="ri-zoom-out-line"></i></button>
   </div>
 </template>
 
