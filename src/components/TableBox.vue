@@ -63,6 +63,10 @@ export default {
       })
     },
     delTable: function (id) {
+      this.rows.forEach(el => {
+        store.state.lib.jsPlumb.remove(el.id)
+      })
+
       store.commit('delTable', id)
     },
     addRow: function (id) {

@@ -9,6 +9,7 @@ export default {
   name: 'row',
   methods: {
     delRow: function () {
+      store.state.lib.jsPlumb.remove(this.id)
       var payload = {
         table: this.table,
         id: this.id
