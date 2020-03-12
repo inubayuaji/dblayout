@@ -1,7 +1,7 @@
 <template>
   <div class="Box Box--condensed panzoom-exclude" v-bind:id="id" ref="tableBox">
     <div class="Box-header">
-      New entity {{ id }}
+      New table
       <button v-on:click="addRow(id)"><i class="ri-add-line"></i></button>
       <button v-on:click="delTable(id)"><i class="ri-close-line"></i></button>
     </div>
