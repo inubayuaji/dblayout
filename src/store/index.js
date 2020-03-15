@@ -29,7 +29,8 @@ export default new Vuex.Store({
       var rowId = uniqid('r-')
       var newRow = {
         id: rowId,
-        name: 'New row'
+        name: 'New row',
+        relations: []
       }
       state.tables[i].rows.push(newRow)
     },
@@ -37,6 +38,35 @@ export default new Vuex.Store({
       var tableIndex = state.tables.findIndex(x => x.id === table)
       var rows = state.tables[tableIndex].rows.filter(x => x.id !== id)
       state.tables[tableIndex].rows = rows
+    },
+    addConnection (state, info) {
+      var relation = null
+      var sourceParentId = info.source.parentNode.id
+      var targetParentId = info.target.parentNode.id
+      var sourceId = info.sourceId
+      var targetId = info.targetId
+
+      var tableSourceIndex = state.tables.findIndex(x => x.id === sourceParentId)
+      var tableTargetIndex = state.tables.findIndex(x => x.id === targetParentId)
+      var rowSourceIndex = state.tables[tableSourceIndex].rows.findIndex(x => x.id === sourceId)
+      var rowTargetIndex = state.tables[tableTargetIndex].rows.findIndex(x => x.id === targetId)
+
+      relation = {
+        toId: targetId,
+        type: 'one-to-one'
+      }
+      state.tables[tableSourceIndex].rows[rowSourceIndex].relations.push(relation)
+      console.log(relation)
+
+      relation = {
+        toId: sourceId,
+        type: 'one-to-one'
+      }
+      state.tables[tableTargetIndex].rows[rowTargetIndex].relations.push(relation)
+      console.log(relation)
+    },
+    delConnection (state, info) {
+
     }
   }
 })

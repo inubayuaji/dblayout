@@ -30,11 +30,44 @@ export default {
   mounted: function () {
     var el = this.$refs.page
 
+    // membuat panzoom
     store.state.lib.panzoom = new Panzoom(el)
 
+    // membuat jsPlumb instance
     var jsPlumb = jsplumb.jsPlumb.getInstance()
     jsPlumb.setContainer(el)
     store.state.lib.jsPlumb = jsPlumb
+
+    // membuat jsPlumb event
+    this.registerEvent()
+  },
+  methods: {
+    registerEvent: function () {
+      // mndapatkan instance vue
+      var _this = this
+      // koneksi baru
+      store.state.lib.jsPlumb.bind('connection', function (info) {
+        console.log(info)
+        console.log('koneksi baru')
+        _this.addConnection(info)
+      })
+      // koneksi terputus
+      store.state.lib.jsPlumb.bind('connectionDetached', function (info) {
+        // console.log(info)
+        console.log('koneksi terputus')
+      })
+      // koneksi berubah
+      store.state.lib.jsPlumb.bind('connectionMoved', function (info) {
+        // console.log(info)
+        console.log('koneksi berubah')
+      })
+    },
+    addConnection: function (info) {
+      store.commit('addConnection', info)
+    },
+    delConnection: function (info) {
+
+    }
   },
   components: {
     TableBox
