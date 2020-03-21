@@ -47,7 +47,6 @@ export default {
       var _this = this
       // koneksi baru
       store.state.lib.jsPlumb.bind('connection', function (info) {
-        console.log(info)
         console.log('koneksi baru')
         _this.addConnection(info)
       })
@@ -55,6 +54,7 @@ export default {
       store.state.lib.jsPlumb.bind('connectionDetached', function (info) {
         // console.log(info)
         console.log('koneksi terputus')
+        _this.delConnection(info)
       })
       // koneksi berubah
       store.state.lib.jsPlumb.bind('connectionMoved', function (info) {
@@ -66,7 +66,7 @@ export default {
       store.commit('addConnection', info)
     },
     delConnection: function (info) {
-
+      store.commit('delConnection', info)
     }
   },
   components: {

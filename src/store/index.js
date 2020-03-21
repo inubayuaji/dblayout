@@ -56,17 +56,34 @@ export default new Vuex.Store({
         type: 'one-to-one'
       }
       state.tables[tableSourceIndex].rows[rowSourceIndex].relations.push(relation)
-      console.log(relation)
 
       relation = {
         toId: sourceId,
         type: 'one-to-one'
       }
       state.tables[tableTargetIndex].rows[rowTargetIndex].relations.push(relation)
-      console.log(relation)
     },
     delConnection (state, info) {
+      var relation = null
+      var sourceParentId = info.source.parentNode.id
+      var targetParentId = info.target.parentNode.id
+      var sourceId = info.sourceId
+      var targetId = info.targetId
 
+      var tableSourceIndex = state.tables.findIndex(x => x.id === sourceParentId)
+      var tableTargetIndex = state.tables.findIndex(x => x.id === targetParentId)
+      var rowSourceIndex = state.tables[tableSourceIndex].rows.findIndex(x => x.id === sourceId)
+      var rowTargetIndex = state.tables[tableTargetIndex].rows.findIndex(x => x.id === targetId)
+
+      relation = state.tables[tableSourceIndex].rows[rowSourceIndex].relations
+      relation = relation.filter(x => x.toId !== targetId)
+      console.log(relation)
+      state.tables[tableSourceIndex].rows[rowSourceIndex].relations = relation
+
+      relation = state.tables[tableTargetIndex].rows[rowTargetIndex].relations
+      relation = relation.filter(x => x.toId !== sourceId)
+      console.log(relation)
+      state.tables[tableTargetIndex].rows[rowTargetIndex].relations = relation
     }
   }
 })
